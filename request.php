@@ -28,15 +28,8 @@
       
       return $array_data;
 
-
-      
-
-        //echo  $url . "Test" . $orderID;
      }
 
-
-
-     $current_language = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
      $amount = $_POST['amount'];
      $desc = $_POST['desc'];
 

@@ -15,19 +15,6 @@
 		</form>
 
 		<br>
-		<div class="d-flex">
-						<?php
-					echo $_POST['amount'];
-					echo '<br/>';
-					$current_language = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-					if ($_POST) {
-						echo $current_language;
-						echo '<br/>';
-					}
-					echo $_POST['desc'];
-
-					?>
-		</div>
 	</div>
 	
 </body>
