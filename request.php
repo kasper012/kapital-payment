@@ -1,4 +1,5 @@
 <?php
+include 'connection.php';
 
     #REQUEST
     
@@ -44,9 +45,9 @@
                     <Amount>" .$_POST['amount']*100 ."</Amount>
                     <Currency>944</Currency>
                     <Description>".$_POST['desc']."</Description>
-                    <ApproveURL>/testshopPageReturn.jsp</ApproveURL>
-                    <CancelURL>/testshopPageReturn.jsp</CancelURL>
-                    <DeclineURL>/testshopPageReturn.jsp</DeclineURL>
+                    <ApproveURL>http://kasper012.beget.tech/approve.php</ApproveURL>
+                    <CancelURL>http://kasper012.beget.tech/cancel.php</CancelURL>
+                    <DeclineURL>http://kasper012.beget.tech/decline.php</DeclineURL>
               </Order>
       </Request>
 	</TKKPG>";
@@ -59,7 +60,23 @@
 
     $resultUrl = "{$url}" . "?SessionID={$sessionID}&OrderID={$orderID}";
 
-    header("Location: {$resultUrl}");
+
+
+    // INSERTING DATA TO DATABASE
 
     
+     $sql = "INSERT INTO purchases (  order_id, session_id, order_desc, card_number, date, order_status, response_description, amount)
+        VALUES ( '$orderID', '$sessionID','' ,'','','','','$amount')";
+    
+    if ($conn->query($sql) === TRUE) {
+        # Redirect
+         header("Location: {$resultUrl}");
+
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    
+    $conn->close(); 
+      
+
 ?>
