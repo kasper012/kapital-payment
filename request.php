@@ -60,18 +60,16 @@ include 'connection.php';
 
     $resultUrl = "{$url}" . "?SessionID={$sessionID}&OrderID={$orderID}";
 
-
-
+    $current_datetime = date("Y/m/d H:i:sa"); 
     // INSERTING DATA TO DATABASE
 
     
      $sql = "INSERT INTO purchases (  order_id, session_id, order_desc, card_number, date, order_status, response_description, amount)
-        VALUES ( '$orderID', '$sessionID','' ,'','','','','$amount')";
+        VALUES ( '$orderID', '$sessionID','' ,'','$current_datetime','','','$amount')";
     
     if ($conn->query($sql) === TRUE) {
         # Redirect
          header("Location: {$resultUrl}");
-
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }

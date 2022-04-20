@@ -61,9 +61,23 @@ echo $orderDate;
          WHERE order_id=$orderID";
     
     if ($conn->query($sql) === TRUE) {
-        echo 'Updated succesfully';
+        echo "
+            <!DOCTYPE html>
+            <html>
+            <head>
+            
+                <title>Document</title>
+            </head>
+            <body>
+                <script>
+                    window.location.replace('/index.php');
+                </script>
+            </body>
+            </html>
+        ";
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
     
     $conn->close(); 
+        header('Location: /index.php');

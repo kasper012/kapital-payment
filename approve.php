@@ -106,7 +106,6 @@ echo '<br/>';
 echo $responseDescription;
 echo '<br/>';
 echo "------";
-
 /*
 //print_r($xmlToArray["@attributes"]);
 
@@ -115,23 +114,36 @@ echo "------";
 
     
      $sql = "UPDATE purchases SET 
-         order_id='$orderID', 
          session_id='$sessionID', 
          order_desc='$orderDescription', 
          card_number='$pan', 
          order_status='$orderStatus', 
          response_description='$responseDescription', 
          amount='$amount'
+         WHERE order_id=$orderID
 ";
     
     if ($conn->query($sql) === TRUE) {
-        # Redirect
-        echo 'Inserted succesfully';
+        echo "
+            <!DOCTYPE html>
+            <html>
+            <head>
+            
+                <title>Document</title>
+            </head>
+            <body>
+                <script>
+                    window.location.replace('/index.php');
+                </script>
+            </body>
+            </html>
+        ";
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
     
     $conn->close(); 
+        heaeder('Location: /index.php');
 
 
 
